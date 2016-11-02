@@ -1,3 +1,15 @@
+
+  <% if flash[:error].present? %>
+    <div class="alert alert-danger">
+      <p><b><%= flash[:error_count] %>件のエラーがあります</b></p>      
+      <ul class="errors">
+        <% flash[:error].each do |e| %>
+          <li><%= e %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
 <div class="row">
   <div class="col-lg-12">
     <h1>顧客詳細</h1>

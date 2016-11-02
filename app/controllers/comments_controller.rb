@@ -16,8 +16,9 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to customer_path(@comment.customer_id)
     else
-　    redirect_to customer_path(@comment.customer_id)
-#     render template: "customers/show"
+#     redirect_to customer_path(@comment.customer_id)
+#     render template: "customers/show"  この方法がわからない・・・
+      redirect_to customer_path(@comment.customer_id), flash: { error: @comment.errors.full_messages, error_count: @comment.errors.count}
     end
   end
 
