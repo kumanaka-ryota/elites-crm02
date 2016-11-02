@@ -16,7 +16,8 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to customer_path(@comment.customer_id)
     else
-      redirect_to customer_path(@comment.customer_id)
+　    redirect_to customer_path(@comment.customer_id)
+#     render template: "customers/show"
     end
   end
 
