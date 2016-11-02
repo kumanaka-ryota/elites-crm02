@@ -14,13 +14,13 @@
     <%= link_to '編集', edit_customer_path(@customer), class: "btn btn-default" %>
     <%= link_to '戻る', customers_path, class: "btn btn-default" %>
 
-
     <hr />
     
     <h2>対応履歴</h2>
     <% @comments.each do |comment| %>
       <div class="media">
         <div class="media-body">
+          <div style="float:left;"><%= image_tag comment.user.image_url ,:size => "60x60" %></div>
           <%= simple_format(comment.body) %>
           <p class="text-muted">
             投稿記事:<%= comment.created_at.strftime('%Y%m%d %H:%M') %>
@@ -29,7 +29,7 @@
         </div>
       </div>
     <% end %>
-
+    
     <%= form_for(@comment, url: { controller: :comments, action: :create }) do |f| %>
       <div class="form-group">
         <%= image_tag current_user.image_url ,:size => "60x60"%><br>
@@ -37,6 +37,7 @@
         <%= f.text_area :body, class: "form-control" %>
       </div>
       <%= f.hidden_field :customer_id, value: @customer.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
       <%= f.submit class: "btn btn-default" %>
     <% end %>    
     
